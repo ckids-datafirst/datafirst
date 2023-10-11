@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from datafirst.database import get_cursor, open_database
+from datafirst.database import close_database, get_cursor, open_database
 
 RESOURCES_DIRECTORY = Path(__file__).parent / "resources"
 DATABASE_PATH = RESOURCES_DIRECTORY / "datafirst.sqlite"
@@ -16,4 +16,5 @@ def cursor() -> sqlite3.Cursor:
         raise FileNotFoundError("Database not found " + str(DATABASE_PATH))
     connection = open_database(DATABASE_PATH)
     cursor = get_cursor(connection)
-    return cursor
+    yield cursor
+    close_database(connection)

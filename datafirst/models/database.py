@@ -30,31 +30,31 @@ class Topic:
 
 
 @dataclass
-class People:
+class Student:
+    id: int
     name: str
     url_name: Union[str, None] = None
+    email: Optional[str] = None
+    semesters_participated: Optional[list[str]] = None
+    degree_program: Optional[str] = None
+    school: Optional[str] = None
 
     def __post_init__(self):
         self.url_name = people_name_to_directory_name(self.name)
 
 
 @dataclass
-class Student(People):
-    email: Optional[str] = None
-    semesters_participated: Optional[list[str]] = None
-    id: Optional[int] = None
-    degree_program: Optional[str] = None
-    school: Optional[str] = None
-
-
-@dataclass
-class Advisor(People):
+class Advisor:
+    id: str
+    name: str
     email: Optional[str] = None
     organization: Optional[str] = None
     semesters_participated: Optional[list[str]] = None
     title: Optional[str] = None
     primary_school: Optional[str] = None
-    id: Optional[str] = None
+
+    def __post_init__(self):
+        self.url_name = people_name_to_directory_name(self.name)
 
 
 @dataclass
@@ -63,7 +63,7 @@ class Project(JSONWizard):
     semester: str
     year: int
     project_overview: str
-    id: Optional[str] = None
+    id: str
     skill_required: Optional[list[SkillOrSoftware]] = None
     awards: Optional[list[Award]] = None
     topics: Optional[list[Topic]] = None

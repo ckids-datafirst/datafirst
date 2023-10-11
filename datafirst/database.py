@@ -40,8 +40,6 @@ def get_projects(cursor: sqlite3.Cursor) -> list[Project]:
             final_presentation=row[5],
             student_learning=row[6],
         )
-        if project.id is None:
-            raise ValueError("Project id is None")
         students = get_students_by_project_id(cursor, project.id)
         advisors = get_advisors_by_project_id(cursor, project.id)
         topics = get_topics_by_project_id(cursor, project.id)
@@ -154,8 +152,6 @@ def get_advisors_by_project_id(
             organization=row[3],
             primary_school=row[4],
         )
-        if advisor.id is None:
-            raise ValueError("Advisor id is None")
         advisor.semesters_participated = get_semester_advisor_by_id(cursor, advisor.id)
         advisors.append(advisor)
     return advisors
@@ -172,8 +168,6 @@ def get_advisors(cursor: sqlite3.Cursor) -> list[Advisor]:
             organization=row[3],
             primary_school=row[4],
         )
-        if advisor.id is None:
-            raise ValueError("Advisor id is None")
         advisor.semesters_participated = get_semester_advisor_by_id(cursor, advisor.id)
         advisors.append(advisor)
 
