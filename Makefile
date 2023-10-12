@@ -5,7 +5,7 @@ PYTHON := python
 PYTHONPATH := `pwd`
 
 #* Docker variables
-IMAGE := datafirst_tools
+IMAGE := datafirst
 VERSION := latest
 
 #* Poetry
@@ -41,14 +41,14 @@ formatting: codestyle
 #* Linting
 .PHONY: test
 test:
-	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov=datafirst_tools --basetemp=testResults tests/
+	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov=datafirst tests/
 	poetry run coverage-badge -o assets/images/coverage.svg -f
 
 .PHONY: check-codestyle
 check-codestyle:
 	poetry run isort --diff --check-only --settings-path pyproject.toml ./
 	poetry run black --diff --check --config pyproject.toml ./
-	poetry run darglint --verbosity 2 datafirst_tools tests
+	poetry run darglint --verbosity 2 datafirst tests
 
 .PHONY: mypy
 mypy:
@@ -57,8 +57,8 @@ mypy:
 .PHONY: check-safety
 check-safety:
 	poetry check
-	poetry run safety check --full-report -i 51457
-	poetry run bandit -ll --recursive datafirst_tools tests
+	poetry run safety check --full-report
+	poetry run bandit -ll --recursive datafirst tests
 
 .PHONY: lint
 lint: test check-codestyle mypy check-safety
