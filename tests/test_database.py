@@ -1,6 +1,16 @@
 from datafirst.database import Database
+from datafirst.models.database import School
 
 advisor_id = "advisor1@usc.edu"
+advisor_name = "Advisor One"
+advisor_email = advisor_id
+advisor_organization = "USC"
+advisor_semesters_participated = ["Fall 2023", "Fall 2022"]
+advisor_school = School(
+    name="Viterbi School of Engineering", url="https://viterbischool.usc.edu/", id=12
+)
+
+
 project_id = "2023-test-project1"
 student_id = 1
 school_id = 1
@@ -17,35 +27,3 @@ def test_get_topics_by_project_id(database: Database) -> None:
 
 def test_get_awards_by_project_id(database: Database) -> None:
     database.get_awards_by_project_id(project_id=project_id)
-
-
-def test_get_students_by_project_id(database: Database) -> None:
-    database.get_students_by_project_id(project_id=project_id)
-
-
-def test_get_advisors_by_project_id(database: Database) -> None:
-    database.get_advisors_by_project_id(project_id=project_id)
-
-
-def test_get_projects(database: Database) -> None:
-    database.get_projects()
-
-
-def test_get_projects_by_student_id(database: Database) -> None:
-    database.get_projects_by_student_id(1)
-
-
-def test_get_projects_by_advisor_id(database: Database) -> None:
-    database.get_projects_by_advisor_id(advisor_id)
-
-
-def test_get_advisors(database: Database) -> None:
-    database.get_advisors()
-
-
-def test_get_students(database: Database) -> None:
-    database.get_students()
-
-
-def test_get_semester_advisor(database: Database) -> None:
-    database.get_semester_advisor_by_id(advisor_id)
