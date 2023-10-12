@@ -5,10 +5,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "datafirst"
-version = "0.1.0"
-description = "Awesome `datafirst` is a Python cli/package created with https://github.com/TezRomacH/python-package-template"
+version = "0.1.1"
+description = "A Python package for working with DataFirst database."
 readme = "README.md"
-authors = ["ckids-datafirst <mosorio@gmail.com>"]
+authors = ["ckids-datafirst <maxiosorio@gmail.com>"]
 license = "MIT"
 repository = "https://github.com/ckids_datafirst/datafirst"
 homepage = "https://github.com/ckids_datafirst/datafirst"
