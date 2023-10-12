@@ -95,25 +95,24 @@ class Database:
             students.append(student)
         return students
 
-    def get_semesters_by_student_id(self, student_id: int):
+    def get_semesters_by_student_id(self, student_id: int) -> list[str]:
+        semester_participated: list[str] = []
         if student_id:
-            semester_participated: list[str] = []
             for project in self.get_projects_by_student_id(student_id):
                 semester = f"{project.semester} {project.year}"
                 if semester not in semester_participated:
                     semester_participated.append(semester)
 
-            return semester_participated
+        return semester_participated
 
-    def get_semester_advisor_by_id(self, advisor_id: str):
+    def get_semester_advisor_by_id(self, advisor_id: str) -> list[str]:
+        semester_participated: list[str] = []
         if advisor_id:
-            semester_participated: list[str] = []
             for project in self.get_projects_by_advisor_id(advisor_id):
                 semester = f"{project.semester} {project.year}"
                 if semester not in semester_participated:
                     semester_participated.append(semester)
-
-            return semester_participated
+        return semester_participated
 
     def get_advisors_by_project_id(self, project_id: str) -> list[Advisor]:
         advisors: list[Advisor] = []
