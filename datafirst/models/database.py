@@ -10,6 +10,13 @@ from datafirst.utils import people_name_to_directory_name
 
 
 @dataclass
+class School:
+    name: str
+    url: str
+    id: Optional[int] = None
+
+
+@dataclass
 class Award(JSONWizard):
     name: str
     id: Optional[int] = None
@@ -31,13 +38,14 @@ class Topic:
 
 @dataclass
 class Student:
-    id: int
+    id: str
     name: str
-    url_name: Union[str, None] = None
     email: Optional[str] = None
-    semesters_participated: Optional[list[str]] = None
     degree_program: Optional[str] = None
     school: Optional[str] = None
+    github_username: Optional[str] = None
+    last_participation: Optional[str] = None
+    semesters_participated: Optional[list[str]] = None
 
     def __post_init__(self):
         self.url_name = people_name_to_directory_name(self.name)
@@ -49,9 +57,10 @@ class Advisor:
     name: str
     email: Optional[str] = None
     organization: Optional[str] = None
+    primary_school: Optional[School] = None
+    is_formerly_primary_school: int = 0
     semesters_participated: Optional[list[str]] = None
     title: Optional[str] = None
-    primary_school: Optional[str] = None
 
     def __post_init__(self):
         self.url_name = people_name_to_directory_name(self.name)
@@ -59,18 +68,19 @@ class Advisor:
 
 @dataclass
 class Project(JSONWizard):
+    id: str
     name: str
     semester: str
     year: int
     project_overview: str
-    id: str
-    skill_required: Optional[list[SkillOrSoftware]] = None
-    awards: Optional[list[Award]] = None
-    topics: Optional[list[Topic]] = None
-    students: Optional[list[Student]] = None
     final_presentation: Optional[str] = None
-    advisors: Optional[list[Advisor]] = None
     student_learning: Optional[str] = None
+    website: Optional[str] = None
+    advisors: Optional[list[Advisor]] = None
+    awards: Optional[list[Award]] = None
+    skill_required: Optional[list[SkillOrSoftware]] = None
+    students: Optional[list[Student]] = None
+    topics: Optional[list[Topic]] = None
 
 
 class Semesters(Enum):
