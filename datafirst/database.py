@@ -27,6 +27,8 @@ class Database:
             (advisor_id,),
         )
         row = self.cursor.fetchone()
+        if row is None:
+            raise Exception(f"Advisor with id {advisor_id} not found")
         semester_participated = self.get_semesters_participed_by_advisor(advisor_id)
         school = School(
             id=row[5],
