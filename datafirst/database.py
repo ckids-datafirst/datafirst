@@ -202,7 +202,6 @@ class Database:
         self.cursor.execute(
             """
                 SELECT project.semester, project.year  FROM advisor
-                            INNER JOIN school ON advisor.primary_school_id = school.id
                             INNER JOIN project_has_advisor ON project_has_advisor.advisor_id = advisor.id
                             INNER JOIN project ON project.id = project_has_advisor.project_id
                     WHERE advisor.id = ?;""",
@@ -225,7 +224,6 @@ class Database:
         self.cursor.execute(
             """
             SELECT semester.semester, semester.year  FROM advisor
-            INNER JOIN school ON advisor.primary_school_id = school.id
             INNER JOIN semester_has_co_chair ON semester_has_co_chair.co_chair_id = advisor.id
             INNER JOIN semester ON semester.id = semester_has_co_chair.semester_id
             WHERE advisor.id = ?;""",
