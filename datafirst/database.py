@@ -33,11 +33,14 @@ class Database:
         semester_participated_as_chair = (
             self.get_semesters_participed_by_advisor_as_chair(advisor_id)
         )
-        school = School(
-            id=row[5],
-            name=row[6],
-            url=row[7],
-        )
+        if row[5] is None:
+            school = None
+        else:
+            school = School(
+                id=row[5],
+                name=row[6],
+                url=row[7],
+            )
         advisor = Advisor(
             id=row[0],
             name=row[1],
