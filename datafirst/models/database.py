@@ -60,6 +60,7 @@ class Advisor:
     primary_school: Optional[School] = None
     is_formerly_primary_school: int = 0
     semesters_participated: Optional[list[str]] = None
+    semesters_participated_as_chair: Optional[list[str]] = None
     title: Optional[str] = None
 
     def __post_init__(self):

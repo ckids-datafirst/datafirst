@@ -30,6 +30,9 @@ class Database:
         if row is None:
             raise Exception(f"Advisor with id {advisor_id} not found")
         semester_participated = self.get_semesters_participed_by_advisor(advisor_id)
+        semester_participated_as_chair = (
+            self.get_semesters_participed_by_advisor_as_chair(advisor_id)
+        )
         if row[5] is None:
             school = None
         else:
@@ -46,6 +49,7 @@ class Database:
             is_formerly_primary_school=row[4],
             primary_school=school,
             semesters_participated=semester_participated,
+            semesters_participated_as_chair=semester_participated_as_chair,
         )
         return advisor
 
@@ -202,6 +206,29 @@ class Database:
                             INNER JOIN project_has_advisor ON project_has_advisor.advisor_id = advisor.id
                             INNER JOIN project ON project.id = project_has_advisor.project_id
                     WHERE advisor.id = ?;""",
+            (advisor_id,),
+        )
+
+        rows = self.cursor.fetchall()
+        for row in rows:
+            semester = row[0]
+            year = row[1]
+            edition = f"{semester} {year}"
+            if edition not in semester_participated:
+                semester_participated.append(edition)
+        return semester_participated
+
+    def get_semesters_participed_by_advisor_as_chair(
+        self, advisor_id: str
+    ) -> list[str]:
+        semester_participated: list[str] = []
+        self.cursor.execute(
+            """
+            SELECT semester.semester, semester.year  FROM advisor
+            INNER JOIN school ON advisor.primary_school_id = school.id
+            INNER JOIN semester_has_co_chair ON semester_has_co_chair.co_chair_id = advisor.id
+            INNER JOIN semester ON semester.id = semester_has_co_chair.semester_id
+            WHERE advisor.id = ?;""",
             (advisor_id,),
         )
 

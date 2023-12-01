@@ -6,6 +6,7 @@ advisor_name = "Advisor One"
 advisor_email = advisor_id
 advisor_organization = "USC"
 advisor_semesters_participated = ["Fall 2023", "Fall 2022"]
+advisor_semesters_parti = ["Fall 2023"]
 advisor_school = School(
     name="Viterbi School of Engineering", url="https://viterbischool.usc.edu/", id=12
 )
@@ -19,6 +20,7 @@ expected = Advisor(
     primary_school=advisor_school,
     is_formerly_primary_school=1,
     semesters_participated=advisor_semesters_participated,
+    semesters_participated_as_chair=advisor_semesters_parti,
 )
 
 
