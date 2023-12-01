@@ -22,7 +22,7 @@ class Database:
     def get_advisor_by_id(self, advisor_id: str) -> Advisor:
         self.cursor.execute(
             """SELECT advisor.id, advisor.name, email, organization, is_formerly_primary_school, school.id, school.name, school.url  FROM advisor
-            INNER JOIN school ON advisor.primary_school_id = school.id
+            LEFT JOIN school ON advisor.primary_school_id = school.id
             WHERE advisor.id = ?;""",
             (advisor_id,),
         )
