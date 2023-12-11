@@ -34,7 +34,7 @@ python = "^3.9.17"
 dataclass-wizard = "^0.22.2"
 
 [tool.poetry.dev-dependencies]
-bandit = "^1.7.1"
+bandit = "^1.7.6"
 black = {version = "^23.7.0", allow-prereleases = true}
 darglint = "^1.8.1"
 isort = {extras = ["colors"], version = "^5.10.1"}
