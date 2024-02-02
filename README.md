@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Build status](https://github.com/ckids_datafirst/datafirst/workflows/build/badge.svg?branch=master&event=push)](https://github.com/ckids_datafirst/datafirst/actions?query=workflow%3Abuild)
+[![Build status](https://github.com/ckids-datafirst/datafirst/actions/workflows/build.yml/badge.svg)](https://github.com/ckids-datafirst/datafirst/actions/workflows/build.yml)
 [![Python Version](https://img.shields.io/pypi/pyversions/datafirst.svg)](https://pypi.org/project/datafirst/)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/ckids_datafirst/datafirst/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 
